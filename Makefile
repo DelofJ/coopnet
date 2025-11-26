@@ -46,7 +46,7 @@ else
       LIB_DIR := ./lib/mac_intel
       CXXFLAGS += -arch x86_64
     endif
-    CXXFLAGS += -DOSX_BUILD=1
+    CXXFLAGS += -DOSX_BUILD=1 -Wno-error=deprecated-declarations
     DYNLIB_NAME := libcoopnet.dylib
     LIBS := -l juice.1.6.2
     LDFLAGS += -rpath . -dynamiclib -install_name @rpath/$(DYNLIB_NAME)
