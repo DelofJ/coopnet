@@ -5,7 +5,12 @@
 OSX_INTEL ?= 0
 OSX_ARM ?= 0
 OSX_BUILD ?= 0
+IOS_BUILD ?= 0
 LOGGING ?= 0
+
+ifeq ($(IOS_BUILD),1)
+  OSX_BUILD = 1
+endif
 
 #################
 
@@ -39,7 +44,11 @@ ifeq ($(OS),Windows_NT)
   endif
 else
   ifeq ($(OSX_BUILD),1)
-    ifeq ($(OSX_ARM),1)
+    ifeq ($(IOS_BUILD),1)
+      CXX = clang++
+      LIB_DIR := ./lib/ios
+      CXXFLAGS += -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
+    else ifeq ($(OSX_ARM),1)
       LIB_DIR := ./lib/mac_arm
       CXXFLAGS += -arch arm64
     else
