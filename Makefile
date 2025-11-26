@@ -42,11 +42,9 @@ else
     ifeq ($(OSX_ARM),1)
       LIB_DIR := ./lib/mac_arm
       CXXFLAGS += -arch arm64
-      LDFLAGS += -arch arm64
     else
       LIB_DIR := ./lib/mac_intel
       CXXFLAGS += -arch x86_64
-      LDFLAGS += -arch x86_64
     endif
     CXXFLAGS += -DOSX_BUILD=1
     DYNLIB_NAME := libcoopnet.dylib
